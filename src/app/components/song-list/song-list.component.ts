@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SongService } from 'src/app/services/song.service';
 import { Song } from 'src/app/models/song';
 import { FormControl } from '@angular/forms';
+import { pairs } from 'rxjs';
 
 @Component({
   selector: 'app-song-list',
@@ -22,6 +23,18 @@ export class SongListComponent implements OnInit {
     this.songService.searchSong(this.songNameControl.value).subscribe(songs =>{
       this.songs = songs.results
     })
+  }
+
+  convertToMinutes(duration:number){
+    let seconds = duration/1000;
+    let minutes = seconds/60;
+    return Math.floor(minutes);
+  }
+
+  convertToSeconds(duration:number){
+    let seconds = duration/1000;
+    let minutes = seconds%60;
+    return Math.floor(minutes);
   }
 
 }

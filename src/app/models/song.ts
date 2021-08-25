@@ -3,6 +3,6 @@ export class Song{
  trackName: string;
  artistName: string;
  collectionName: string;
- trackNameMillis: number;
+ trackTimeMillis: number;
  trackPrice: number;
 }

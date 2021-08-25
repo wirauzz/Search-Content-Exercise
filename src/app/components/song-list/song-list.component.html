@@ -1,26 +1,26 @@
-
 <form class="form px-5 mt-5">
     <input type="text" class="form-control"  [formControl]="songNameControl" placeholder="Search song">
     <button class="btn btn-dark mx-auto my-2" (click)="searchSong()">Buscar</button>
 </form>
-
-<div class="table table-dark">
-    <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Song Name</th>
-          <th scope="col">Artist</th>
-          <th scope="col">Album</th>
-          <th scope="col">Duration</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="table-light text-dark" *ngFor="let song of songs; let i = index">
-            <td>{{i+1}}</td>
-            <td>{{song.trackName}}</td>
-            <td>{{song.artistName}}</td>
-            <td>{{song.collectionName}}</td>
-            <td>{{song.trackNameMIllis}}</td>          
-        </tr>
-    </tbody>
+<div class="container mt-5">
+    <div class="table table-dark">
+        <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Song Name</th>
+              <th scope="col">Artist</th>
+              <th scope="col">Album</th>
+              <th scope="col">Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-light text-dark" *ngFor="let song of songs; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{song.trackName}}</td>
+                <td>{{song.artistName}}</td>
+                <td>{{song.collectionName}}</td>
+                <td>{{convertToMinutes(song.trackTimeMillis)}}:{{convertToSeconds(song.trackTimeMillis)}}</td>          
+            </tr>
+        </tbody>
+    </div>
 </div>
