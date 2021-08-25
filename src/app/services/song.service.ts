@@ -19,7 +19,7 @@ export class SongService {
   constructor(private Http:HttpClient) { }
 
   searchSong(text:string):Observable<Song[]>{
-    return this.Http.get<Song[]>(`${this.songUrl}search?term=${text}`)
+    return this.Http.get<Song[]>(`${this.songUrl}search?term=${text}&entity=song`)
   }
   
 }
