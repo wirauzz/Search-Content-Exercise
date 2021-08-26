@@ -2,51 +2,33 @@
     <input type="text" class="form-control"  [formControl]="songNameControl" placeholder="Search song">
     <button class="btn btn-dark mx-auto my-2" (click)="searchSong()">Buscar</button>
 </form>
+
 <div class="container mt-5">
-    <table class="table table-dark">
-        <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Song Name</th>
-              <th scope="col">Artist</th>
-              <th scope="col">Album</th>
-              <th scope="col">Duration</th>
-            </tr>
-        </thead>
-   
-        <tbody *ngIf="pageEvent ; elseBlock">
-                <tr class="table-light text-dark" *ngFor="let song of songs | slice: ((pageEvent.pageIndex + 1) * pageEvent.pageSize) - pageEvent.pageSize: (pageEvent.pageIndex + 1) * pageEvent.pageSize ; let i = index">
-                    <td>{{i+((pageEvent.pageIndex + 1) * pageEvent.pageSize) - pageEvent.pageSize +1}}</td>
-                    <td>{{song.trackName}}</td>
-                    <td>{{song.artistName}}</td>
-                    <td>{{song.collectionName}}</td>
-                    <td>{{convertToMinutes(song.trackTimeMillis)}}:{{convertToSeconds(song.trackTimeMillis)}}</td>          
-                </tr>
-        </tbody>   
-        <tbody #elseBlock [hidden]="pageEvent">
-            <tr class="table-light text-dark" *ngFor="let song of songs | slice: ((pageIndex + 1) * pageSize) - pageSize: (pageIndex + 1) * pageSize ; let i = index">
-                <td>{{i+((pageIndex + 1) * pageSize) - pageSize +1}}</td>
-                <td>{{song.trackName}}</td>
-                <td>{{song.artistName}}</td>
-                <td>{{song.collectionName}}</td>
-                <td>{{convertToMinutes(song.trackTimeMillis)}}:{{convertToSeconds(song.trackTimeMillis)}}</td>          
-            </tr>
-        </tbody>
-      
-      
-    </table>
-    <mat-paginator 
-        [length]="length"
-        [pageSize]="pageSize"
-        [pageIndex]="pageIndex"
-        [pageSizeOptions]="pageSizeOptions"
-        (page)="pageEvent = $event"
-        showFirstLastButtons>
-    </mat-paginator>
-    <div *ngIf="pageEvent">
-        <h5>Page Change Event Properties</h5>
-        <div>List length: {{pageEvent.length}}</div>
-        <div>Page size: {{pageEvent.pageSize}}</div>
-        <div>Page index: {{pageEvent.pageIndex}}</div>
+    <div class="card-group ">
+        <app-song-item  *ngFor="let song of songs  | slice: (currentPage * pageSize) - pageSize: currentPage * pageSize " [song]="song"></app-song-item>
     </div>
+
+    <ul class="pagination">
+        <li>
+            <label>Items per page:</label>
+        </li>
+        <li>
+            <label>
+                <select class="form-control col" [(ngModel)]="pageSize" value="pageSize">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+            </label>
+        </li>
+                   
+        <li class="page-item">
+            <button class="btn btn-primary" [disabled]="currentPage == 1" (click)="currentPage = currentPage - 1">&laquo;</button>
+        </li>
+        <span>Page {{currentPage}} of {{ numberOfPages() }}</span>
+        <li class="page-item">
+            <button class="btn btn-primary" [disabled]="currentPage >= songs.length/pageSize" (click)="currentPage = currentPage + 1">&raquo;</button>  
+        </li>
+    </ul>  
 </div>
