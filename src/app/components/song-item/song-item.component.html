@@ -1,10 +1,17 @@
-<div class="card text-white bg-secondary mb-3 mx-4" style="width: 18rem;">
-    <img class="card-img-top" src="{{song.artworkUrl100}}" width="60%">
-    <div class="card-body">
-        <h5 class="card-title">{{song.trackName}}</h5>
-        <p class="card-text">{{song.artistName}}</p>
-        <p class="card-text">{{song.collectionName}}</p>
-        <p class="card-text">Duration: {{convertToMinutes(song.trackTimeMillis)}}:{{convertToSeconds(song.trackTimeMillis)}} Price: {{song.trackPrice}} $ </p>
 
+
+<div class="card">
+    <div class="card text-white bg-secondary mb-3 mx-4">
+        <img class="card-img-top" src="{{song.artworkUrl100}}" width="60%">
+        <div class="card-body">
+            <h5 class="card-title">{{song.trackName}}</h5>
+            <p class="card-text">{{song.artistName}}</p>
+            <p class="card-text">{{song.collectionName}}</p>
+            <p class="card-text">Duration: {{convertToMinutes(song.trackTimeMillis)}}:{{convertToSeconds(song.trackTimeMillis)}} Price: {{song.trackPrice}} $ </p>
+            <audio controls width="20%">
+                <source src="{{song.previewUrl}}" type="audio/mp4">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
     </div>
 </div>

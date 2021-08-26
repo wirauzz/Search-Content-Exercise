@@ -5,4 +5,5 @@ export class Song{
  collectionName: string;
  trackTimeMillis: number;
  trackPrice: number;
+ previewUrl:string;
 }
