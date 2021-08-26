@@ -1,0 +1,36 @@
+<form class="form px-5 mt-5">
+    <input type="text" class="form-control"  [formControl]="songNameControl" placeholder="Search song">
+    <button class="btn btn-dark btn-lg btn-block mx-30 my-2" (click)="searchSong()">Search</button>
+</form>
+
+<div class="container-fluid content-row d-flex justify-content-center">
+    <app-order-songs-by (optionToOrder)="orderSong($event)"></app-order-songs-by>
+</div>
+
+<div class="container ">
+    <div class="row">
+        <app-song-item  class="col-lg-4 d-flex align-items-stretch"  *ngFor="let song of songs  | slice: (currentPage * pageSize) - pageSize: currentPage * pageSize " [song]="song"></app-song-item>
+    </div>
+    <ul class="pagination">
+        <li>
+            <label>Songs per page:</label>
+        </li>
+        <li>
+            <label class="mx-3">
+                <select class="form-control col" [(ngModel)]="pageSize" value="pageSize">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+            </label>
+        </li>   
+        <li class="page-item mx-2">
+            <button class="btn btn-primary" [disabled]="currentPage == 1" (click)="currentPage = currentPage - 1">&laquo;</button>
+        </li>
+        <span class=" align-middle">Page {{currentPage}} of {{numberOfPages()}}</span>
+        <li class="page-item">
+            <button class="btn btn-primary mx-2" [disabled]="currentPage >= length/pageSize" (click)="currentPage = currentPage + 1">&raquo;</button>  
+        </li>
+    </ul>  
+</div>
