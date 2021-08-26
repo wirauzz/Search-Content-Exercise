@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SongListComponent } from './components/song-list/song-list.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SongItemComponent } from './components/song-item/song-item.component';
+import { OrderSongsByComponent } from './components/order-songs-by/order-songs-by.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SongItemComponent } from './components/song-item/song-item.component';
     AppComponent,
     NavbarComponent,
     SongListComponent,
-    SongItemComponent
+    SongItemComponent,
+    OrderSongsByComponent
   ],
   imports: [
     BrowserModule,

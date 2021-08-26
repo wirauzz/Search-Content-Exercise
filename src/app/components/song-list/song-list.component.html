@@ -1,13 +1,14 @@
 <form class="form px-5 mt-5">
     <input type="text" class="form-control"  [formControl]="songNameControl" placeholder="Search song">
-    <button class="btn btn-dark mx-auto my-2" (click)="searchSong()">Buscar</button>
+    <button class="btn btn-dark mx-auto my-2" (click)="searchSong()">Search</button>
 </form>
 
+
 <div class="container mt-5">
+    <app-order-songs-by (optionToOrder)="orderSong($event)"></app-order-songs-by>
     <div class="card-group ">
         <app-song-item  *ngFor="let song of songs  | slice: (currentPage * pageSize) - pageSize: currentPage * pageSize " [song]="song"></app-song-item>
     </div>
-
     <ul class="pagination">
         <li>
             <label>Songs per page:</label>
