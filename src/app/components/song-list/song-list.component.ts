@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SongService } from 'src/app/services/song.service';
 import { Song } from 'src/app/models/song';
 import { FormControl } from '@angular/forms';
-import { pairs } from 'rxjs';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-song-list',
@@ -13,6 +13,12 @@ export class SongListComponent implements OnInit {
 
   songs:Song[];
   songNameControl = new FormControl('')
+
+  length:number = 0;
+  pageSize:number = 10;
+  pageIndex:number = 0;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageEvent: PageEvent;
   
   constructor(private songService:SongService) { }
 
@@ -21,8 +27,11 @@ export class SongListComponent implements OnInit {
 
   searchSong(){
     this.songService.searchSong(this.songNameControl.value).subscribe(songs =>{
-      this.songs = songs.results
+      this.songs = songs['results']
+      this.length=this.songs.length
+      this.pageIndex = 0
     })
+    
   }
 
   convertToMinutes(duration:number){
@@ -36,5 +45,4 @@ export class SongListComponent implements OnInit {
     let minutes = seconds%60;
     return Math.floor(minutes);
   }
-
 }
