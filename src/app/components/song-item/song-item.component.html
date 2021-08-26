@@ -1,0 +1,10 @@
+<div class="card text-white bg-secondary mb-3 mx-4" style="width: 18rem;">
+    <img class="card-img-top" src="{{song.artworkUrl100}}" width="60%">
+    <div class="card-body">
+        <h5 class="card-title">{{song.trackName}}</h5>
+        <p class="card-text">{{song.artistName}}</p>
+        <p class="card-text">{{song.collectionName}}</p>
+        <p class="card-text">Duration: {{convertToMinutes(song.trackTimeMillis)}}:{{convertToSeconds(song.trackTimeMillis)}} Price: {{song.trackPrice}} $ </p>
+
+    </div>
+</div>

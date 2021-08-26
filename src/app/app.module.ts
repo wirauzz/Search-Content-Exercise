@@ -11,13 +11,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SongListComponent } from './components/song-list/song-list.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SongItemComponent } from './components/song-item/song-item.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SongListComponent
+    SongListComponent,
+    SongItemComponent
   ],
   imports: [
     BrowserModule,
