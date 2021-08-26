@@ -10,10 +10,10 @@
 
     <ul class="pagination">
         <li>
-            <label>Items per page:</label>
+            <label>Songs per page:</label>
         </li>
         <li>
-            <label>
+            <label class="mx-3">
                 <select class="form-control col" [(ngModel)]="pageSize" value="pageSize">
                     <option value="5">5</option>
                     <option value="10">10</option>
@@ -23,12 +23,12 @@
             </label>
         </li>
                    
-        <li class="page-item">
+        <li class="page-item mx-2">
             <button class="btn btn-primary" [disabled]="currentPage == 1" (click)="currentPage = currentPage - 1">&laquo;</button>
         </li>
-        <span>Page {{currentPage}} of {{ numberOfPages() }}</span>
+        <span class="mx-2">Page {{currentPage}} of {{ numberOfPages() }}</span>
         <li class="page-item">
-            <button class="btn btn-primary" [disabled]="currentPage >= songs.length/pageSize" (click)="currentPage = currentPage + 1">&raquo;</button>  
+            <button class="btn btn-primary mx-2" [disabled]="currentPage >= songs.length/pageSize" (click)="currentPage = currentPage + 1">&raquo;</button>  
         </li>
     </ul>  
 </div>
