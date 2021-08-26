@@ -34,5 +34,15 @@ export class SongListComponent implements OnInit {
     return Math.ceil(this.songs.length / this.pageSize);
   }
 
+  orderSong(option: boolean){
+    if(option== true)
+    {
+      this.songs.sort((a,b) => a.trackName.localeCompare(b.trackName));
+    }
+    else if(option== false)
+    {
+      this.songs.sort((b,a) => a.trackName.localeCompare(b.trackName));
+    }
+  }
  
 }
