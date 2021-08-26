@@ -16,6 +16,7 @@ export class SongListComponent implements OnInit {
 
   currentPage:number;
   pageSize:number;
+  length:number = 1;
 
   constructor(private songService:SongService) { }
 
@@ -27,11 +28,13 @@ export class SongListComponent implements OnInit {
       this.songs = songs['results']
       this.currentPage = 1;
       this.pageSize = 10;
+      this.length = this.songs.length
+
     })
   }
 
   numberOfPages() {
-    return Math.ceil(this.songs.length / this.pageSize);
+    return Math.ceil(this.length / this.pageSize);
   }
 
   orderSong(option: boolean){
